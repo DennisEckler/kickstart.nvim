@@ -1,9 +1,3 @@
--- local config = {
---   cmd = { vim.fn.expand '~/.local/share/nvim/mason/bin/jdtls' },
---   root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', 'mvnw' }, { upward = true })[1]),
--- }
--- require('jdtls').start_or_attach(config)
---
 local home = os.getenv 'HOME'
 local workspace_path = home .. '/.local/share/nvim/jdtls-workspace/'
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
@@ -37,8 +31,13 @@ local config = {
     '-data',
     workspace_dir,
   },
-  root_dir = require('jdtls.setup').find_root { 'pom.xml', 'gradlew' },
 
+  -- root_dir = require('jdtls.setup').find_root { 'pom.xml', 'gradlew' },
+  root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew' }),
+
+  -- Here you can configure eclipse.jdt.ls specific settings
+  -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+  -- for a list of options
   settings = {
     java = {
       signatureHelp = { enabled = true },
@@ -82,6 +81,13 @@ local config = {
     },
   },
 
+  -- Language server `initializationOptions`
+  -- You need to extend the `bundles` with paths to jar files
+  -- if you want to use additional eclipse.jdt.ls plugins.
+  --
+  -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
+  --
+  -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
     bundles = {},
   },

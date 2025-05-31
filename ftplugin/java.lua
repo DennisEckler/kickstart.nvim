@@ -92,6 +92,13 @@ local config = {
     bundles = {},
   },
 }
+
+config['init_options'] = {
+  bundles = {
+    vim.fn.glob(home .. '/.local/share/nvim/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-0.53.1.jar', 1),
+  },
+}
+
 require('jdtls').start_or_attach(config)
 
 vim.keymap.set('n', '<leader>co', "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = 'Organize Imports' })

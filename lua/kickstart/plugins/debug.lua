@@ -136,6 +136,15 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- set a vim motion for <Space> + d + t to toggle a breakpoint at the line where the cursor is currently on
+    vim.keymap.set('n', '<leader>dt', dap.toggle_breakpoint, { desc = '[D]ebug [T]oggle Breakpoint' })
+
+    -- set a vim motion for <Space> + d + s to start the debugger and launch the debugging ui
+    vim.keymap.set('n', '<leader>dx', dap.continue, { desc = '[D]ebug [S]tart' })
+
+    -- set a vim motion to close the debugging ui
+    vim.keymap.set('n', '<leader>dc', dapui.close, { desc = '[D]ebug [C]lose' })
+
     -- Install golang specific config
     require('dap-go').setup {
       delve = {

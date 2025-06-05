@@ -1,4 +1,4 @@
-return{
+return {
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- For example, in the following configuration, we use: event = 'VimEnter'
@@ -53,8 +53,13 @@ return{
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>cr', group = '[R]efactor' },
+        { '<leader>ct', group = '[T]est' },
+        { '<leader>cg', group = '[G]enerate' },
+        { '<leader>d', group = '[D]ebug' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
-  }
+  },
 }

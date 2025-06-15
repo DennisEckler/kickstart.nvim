@@ -1,5 +1,5 @@
 return {
-{ -- Autoformat
+  { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -13,7 +13,7 @@ return {
         desc = '[F]ormat buffer',
       },
     },
-opts = {
+    opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -31,6 +31,8 @@ opts = {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        json = { 'prettier' },
+        typescript = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -38,5 +40,5 @@ opts = {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
-  }
+  },
 }
